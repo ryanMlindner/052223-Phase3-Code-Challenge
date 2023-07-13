@@ -31,14 +31,10 @@ class Venue:
     def bands(self):
         return [concert.band for concert in Concert.all if concert.venue == self]
     
-    #this deliverable feels weirdly worded and I'm not sure I did it correctly, but
-    #all the tests work and technically it does what the description says
-    #would make much more sense if there was some concrete way to order the concerts (i.e. times)
-    #maybe I'm looking at it wrong, let me know please
     def concert_on(self, date):
         first_concert = None
-        concerts = [concert for concert in Concert.all if concert.date == date]
+        concerts = [concert for concert in self.concerts() if concert.date == date]
         print(concerts)
         if len(concerts) != 0:
-            first_concert = concerts[-1]
+            first_concert = concerts[0]
         return first_concert
